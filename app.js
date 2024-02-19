@@ -3,11 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const express = require("express");
 const { Gateway, Wallets } = require("fabric-network");
-const testNetworkRoot = path.resolve(
-  require("os").homedir(),
-  "fabric-samples/test-network"
-);
-// const FabricCAServices = require("fabric-ca-client");
+const os = require("os");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
@@ -19,11 +15,11 @@ app.use(bodyParser.json());
 // Function to get contract instance
 async function getContractInstance() {
   // Define the connection profile path and wallet path
+  const homeDirectory = os.homedir();
   const ccpPath = path.resolve(
-    process.env.FABRIC_CFG_PATH || "~/fabric-samples/test-network",
-    "organizations",
-    "peerOrganizations",
-    "org1.example.com",
+    homeDirectory, // Use the homeDirectory variable here
+    "fabric-samples/test-network",
+    "organizations/peerOrganizations/org1.example.com",
     "connection-org1.json"
   );
   const ccp = JSON.parse(fs.readFileSync(ccpPath, "utf8"));

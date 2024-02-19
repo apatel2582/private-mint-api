@@ -9,16 +9,26 @@ curl -X POST http://localhost:3001/api/upsertWallet \
 -H "Content-Type: application/json" \
 -d '{"userId": "user2"}'
 
+curl -X POST http://localhost:3001/api/upsertWallet \
+-H "Content-Type: application/json" \
+-d '{"userId": "user3"}'
+
 curl http://localhost:3001/api/getWallet/user2
 
 curl -X POST http://localhost:3001/api/cheatAddFakeUSD \
 -H "Content-Type: application/json" \
 -d '{"userId": "user2", "amount": "1000"}'
 
+curl http://localhost:3001/api/getWallet/user2
+
 curl -X POST http://localhost:3001/api/transferFakeUSD \
 -H "Content-Type: application/json" \
 -d '{"fromUserId": "user2", "toUserId": "user3", "amount": "500"}'
 
+curl http://localhost:3001/api/getWallet/user3
+
 curl -X POST http://localhost:3001/api/purchasePMCoin \
 -H "Content-Type: application/json" \
 -d '{"userId": "user2", "pmCoinAmount": "10"}'
+
+curl http://localhost:3001/api/getWallet/user2
