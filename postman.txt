@@ -1,0 +1,48 @@
+To test your endpoints using Postman, follow these steps for each API route you've defined in your Express application. Ensure your Express server is running before you start.
+
+1. Open Postman
+If you haven't already, download and open Postman.
+
+2. Set Up a New Request
+For each endpoint, you will create a new request in Postman. Here's how you can do it for each type of request:
+
+Upsert Wallet
+Method: POST
+URL: http://localhost:3001/api/upsertWallet
+Body type: raw (JSON)
+Body content: {"userId": "user2"}
+To create or update a wallet, set up your Postman request with these settings, then click "Send."
+
+Get Wallet
+Method: GET
+URL: http://localhost:3001/api/getWallet/user2
+To retrieve a wallet, change the method to GET and use the appropriate URL. No body is needed for this request. Click "Send."
+
+Cheat Add FakeUSD
+Method: POST
+URL: http://localhost:3001/api/cheatAddFakeUSD
+Body type: raw (JSON)
+Body content: {"userId": "user2", "amount": "1000"}
+Set up your Postman request for adding FakeUSD. Ensure you select POST, enter the URL, and provide the required JSON body. Then click "Send."
+
+Transfer FakeUSD
+Method: POST
+URL: http://localhost:3001/api/transferFakeUSD
+Body type: raw (JSON)
+Body content: {"fromUserId": "user2", "toUserId": "user3", "amount": "500"}
+To transfer FakeUSD, follow the same steps as above but with the URL and body content for transferring funds. Click "Send."
+
+Purchase PMCoin
+Method: POST
+URL: http://localhost:3001/api/purchasePMCoin
+Body type: raw (JSON)
+Body content: {"userId": "user2", "pmCoinAmount": "10"}
+Set up your Postman for purchasing PMCoin by providing the necessary URL and JSON body. Click "Send."
+
+3. Analyze the Response
+After sending each request, you'll receive a response in Postman. Check the status code and the response body to ensure the operation was successful and to debug if needed.
+
+Notes
+Replace http://localhost:3001 with your server's actual URL and port if different.
+Adjust the userId, amount, toUserId, and pmCoinAmount in the JSON bodies as necessary for your specific test cases.
+You can save each request in a Postman Collection for easy re-use and testing in the future.

@@ -1,0 +1,24 @@
+cd ~
+cd private-mint-api
+npm install
+node enrollUser.js 'CAAdmin@org1.example.com' admin adminpw
+node registerUser.js 'CAAdmin@org1.example.com' 'User1@org1.example.com' '{"secret": "userpw"}'
+node enrollUser.js 'User1@org1.example.com' 'User1@org1.example.com' userpw
+
+curl -X POST http://localhost:3001/api/upsertWallet \
+-H "Content-Type: application/json" \
+-d '{"userId": "user2"}'
+
+curl http://localhost:3001/api/getWallet/user2
+
+curl -X POST http://localhost:3001/api/cheatAddFakeUSD \
+-H "Content-Type: application/json" \
+-d '{"userId": "user2", "amount": "1000"}'
+
+curl -X POST http://localhost:3001/api/transferFakeUSD \
+-H "Content-Type: application/json" \
+-d '{"fromUserId": "user2", "toUserId": "user3", "amount": "500"}'
+
+curl -X POST http://localhost:3001/api/purchasePMCoin \
+-H "Content-Type: application/json" \
+-d '{"userId": "user2", "pmCoinAmount": "10"}'
